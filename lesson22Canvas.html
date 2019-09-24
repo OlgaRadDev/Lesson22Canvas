@@ -1,0 +1,80 @@
+<!--1. вам нужно написать функцию, которая принимает массив с
+точками и чертит линию, которая их соединяет.-->
+
+<!--var points = [-->
+<!--[50, 50],-->
+<!--[50, 100],-->
+<!--[100, 100],-->
+<!--[100, 50],-->
+<!--[50, 50]-->
+<!--];-->
+<!--2. напишите функцию, которая рисует снеговика и принимает его -->
+<!--началные координаты и размеры. используйте функцию для рисования круга, -->
+<!--которая будет принимать параметр - булевое значение, для отрисовки -->
+<!--закрашенного или пустого круга-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+</head>
+<body>
+<canvas id="canvas" width="900" height="900"></canvas>
+<script>
+    let canvas = document.getElementById('canvas');
+    let ctx = canvas.getContext('2d');
+
+    let points = [
+        [50, 50],
+        [50, 100],
+        [100, 100],
+        [100, 50],
+        [50, 50]
+    ];
+    function drawPoints() {
+        ctx.beginPath();
+        ctx.lineWidth = 7;
+        ctx.strokeStyle = "green";
+
+        ctx.moveTo(points[0][0],points[0][1]);
+        ctx.lineTo(points[1][0],points[1][1]);
+        ctx.lineTo(points[2][0],points[2][1]);
+        ctx.lineTo(points[3][0],points[3][1]);
+        ctx.lineTo(points[4][0],points[4][1]);
+        ctx.stroke();
+    }
+
+    drawPoints(points);
+    
+    let snowman = function (x,y, radius, fillCircle) {
+        ctx.beginPath();
+        ctx.arc(x, y, radius, 0, Math.PI*2, false);
+        if (fillCircle) {
+            ctx.fill();
+        } else {
+            ctx.stroke();
+        }
+    };
+
+    ctx.lineWidth = 5;
+    ctx.strokeStyle = 'blue';
+    snowman(400,400,80);
+    snowman(400,260,60);
+    snowman(400,160,40);
+    ctx.fillStyle = 'brown';
+    snowman(400,240,10, true);
+    snowman(400,270,10, true);
+    snowman(400,360,10, true);
+    snowman(400,400,10, true);
+    snowman(400,450,10, true);
+
+    ctx.fillStyle = 'grey';
+    snowman(380,155,5, true);
+    snowman(420,155,5, true);
+    ctx.fillStyle = 'orange';
+    snowman(400,170,5, true);
+
+</script>
+</body>
+</html>
